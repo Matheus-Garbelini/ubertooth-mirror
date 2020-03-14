@@ -7,6 +7,7 @@
 #include <bluetooth_piconet.h>
 #include <getopt.h>
 #include <string.h>
+#include <unistd.h>
 
 int main(int argc, char *argv[])
 {
@@ -42,7 +43,8 @@ int main(int argc, char *argv[])
 	usb_pkt_rx usb_pkt;
 	while (1)
 	{
-		sleep(1);
+		usleep(100000UL);
+
 		r = cmd_poll(devh, &usb_pkt);
 		//r = cmd_ping(devh);
 		if (r >= 0 && strncmp(usb_pkt.data, "N!", 2) != 0)
